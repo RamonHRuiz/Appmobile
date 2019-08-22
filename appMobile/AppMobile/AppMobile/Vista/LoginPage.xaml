@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="AppMobile.Vista.LoginPage"
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
+             Title="Login">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Padding="10,20,10,5">
+            <Label 
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="RULO">
+            </Label>
+            <Image 
+                Source="LogoRulo"
+                WidthRequest="200"
+                ></Image>
+            
+            <Grid
+                Margin="0,20"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    Text="Correo">
+                    
+                </Label>
+                <Entry
+                    Grid.Row="0"
+                    Grid.Column="1"
+                Keyboard="Email" 
+                Placeholder="Ingresa su Correo"
+                >
+                </Entry>
+
+                <Label 
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    Text="Constraseña">
+                </Label>
+                <Entry
+                    Grid.Row="1"
+                    Grid.Column="1"
+                IsPassword="True"
+                Placeholder="Ingresa su contraseña"
+                >
+                </Entry>
+            </Grid>
+                <ActivityIndicator>
+                </ActivityIndicator>
+                <StackLayout
+                Orientation="Horizontal"
+                >
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="Recordarme"
+                    VerticalOptions="Center"
+                    HorizontalOptions="StartAndExpand"
+                ></Label>
+                    <Switch
+                    HorizontalOptions="End"
+                    >
+                    </Switch>
+                </StackLayout>
+            
+                <Label
+                    HorizontalOptions="Center"
+                    Text="¿Olvidaste tu cuenta?"
+                    TextColor="Blue">
+                    
+                </Label>
+
+           
+            
+            <StackLayout
+                Margin="35,0"
+                >
+                <Button
+                    Margin="10,10"
+                    BackgroundColor = "#39e8f0"
+                    CornerRadius="23"
+                    HeightRequest="46"
+                    Text="Login"
+                    TextColor="White"
+                    >
+                </Button>
+                    <Button 
+                        Margin="10,10"
+                        BackgroundColor = "#e9ec27"
+                        CornerRadius="23"
+                        HeightRequest="46"
+                        Text="Registrar"
+                        TextColor="White">
+                    </Button>
+
+                    <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal">
+
+                        <Image
+                    Source="Facebook_Logo"
+                    WidthRequest="55">
+                        </Image>
+
+                        <Image
+                    Source="Gmail_Logo"
+                    WidthRequest="60">
+                        </Image>
+
+                        <Image
+                    Source="Instagram_Logo"
+                    WidthRequest="60">
+                        </Image>
+
+                    </StackLayout>
+                </StackLayout>
+            
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
