@@ -105,6 +105,7 @@
                             CornerRadius="23"
                             HorizontalOptions="FillAndExpand"
                             HeightRequest="46"
+                            IsEnabled="{Binding IsEnable,Mode=TwoWay}"
                             Text="Login"
                             TextColor="White">
                         </Button>
@@ -115,6 +116,7 @@
                             CornerRadius="23"
                             HorizontalOptions="FillAndExpand"
                             HeightRequest="46"
+                            IsEnabled="{Binding IsEnable,Mode=TwoWay}"
                             Text="Registrar"
                             TextColor="White">
                         </Button>
