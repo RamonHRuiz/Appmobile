@@ -6,23 +6,22 @@
              mc:Ignorable="d"
              x:Class="AppMobile.Vista.LoginPage"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             Title="Login">
+             Title="Rulo"
+             >
     <ContentPage.Content>
-        <ScrollView>
-        <StackLayout Padding="10,20,10,5">
-            <Label 
-                FontAttributes="Bold"
-                FontSize="Large"
-                HorizontalOptions="Center"
-                Text="RULO">
-            </Label>
-            <Image 
-                Source="LogoRulo"
-                WidthRequest="200"
+        <ScrollView 
+            BindingContext="{Binding Login}"
+            >
+            <StackLayout Padding="5">
+
+                <Image 
+                    VerticalOptions="CenterAndExpand"
+                    Source="LogoRulo"
+                    WidthRequest="500"
                 ></Image>
             
-            <Grid
-                Margin="0,20"
+            <Grid Margin="10,0"
+                  VerticalOptions="CenterAndExpand"
                 >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -40,8 +39,9 @@
                 <Entry
                     Grid.Row="0"
                     Grid.Column="1"
-                Keyboard="Email" 
-                Placeholder="Ingresa su Correo"
+                    Keyboard="Email" 
+                    Placeholder="Ingresa su Correo"
+                    Text="{Binding Email,Mode=TwoWay}"
                 >
                 </Entry>
 
@@ -56,76 +56,91 @@
                 <Entry
                     Grid.Row="1"
                     Grid.Column="1"
-                IsPassword="True"
-                Placeholder="Ingresa su contraseña"
+                    IsPassword="True"
+                    Placeholder="Ingresa su contraseña"
+                    Text="{Binding Password,Mode=TwoWay}"
                 >
                 </Entry>
             </Grid>
-                <ActivityIndicator>
+                
+                <ActivityIndicator 
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="CenterAndExpand">
                 </ActivityIndicator>
-                <StackLayout
-                Orientation="Horizontal"
-                >
-                <Label
+
+                <StackLayout Margin="10,0"
+                             Orientation="Horizontal"
+                             VerticalOptions="CenterAndExpand">
+                    <Label
                     FontAttributes="Bold"
                     FontSize="Large"
                     Text="Recordarme"
                     VerticalOptions="Center"
-                    HorizontalOptions="StartAndExpand"
-                ></Label>
+                    HorizontalOptions="StartAndExpand">
+                    </Label>
                     <Switch
-                    HorizontalOptions="End"
-                    >
+                        IsToggled="{Binding IsRemember,Mode=TwoWay}"
+                        HorizontalOptions="End">
                     </Switch>
                 </StackLayout>
-            
+
                 <Label
+                    VerticalOptions="CenterAndExpand"
                     HorizontalOptions="Center"
                     Text="¿Olvidaste tu cuenta?"
                     TextColor="Blue">
-                    
+
                 </Label>
 
-           
-            
-            <StackLayout
+                <StackLayout
                 Margin="35,0"
                 >
-                <Button
-                    Margin="10,10"
-                    BackgroundColor = "#39e8f0"
-                    CornerRadius="23"
-                    HeightRequest="46"
-                    Text="Login"
-                    TextColor="White"
-                    >
-                </Button>
-                    <Button 
-                        Margin="10,10"
-                        BackgroundColor = "#e9ec27"
-                        CornerRadius="23"
-                        HeightRequest="46"
-                        Text="Registrar"
-                        TextColor="White">
-                    </Button>
-
                     <StackLayout
-                    HorizontalOptions="Center"
-                    Orientation="Horizontal">
+                        Orientation="Horizontal"
+                        VerticalOptions="CenterAndExpand">
+                        <Button
+                            Command="{Binding LoginCommand}"
+                            Margin="10,10"
+                            BackgroundColor = "#39e8f0"
+                            CornerRadius="23"
+                            HorizontalOptions="FillAndExpand"
+                            HeightRequest="46"
+                            Text="Login"
+                            TextColor="White">
+                        </Button>
+                        <Button 
+                            Command="{Binding RegistCommand}"
+                            Margin="10,10"
+                            BackgroundColor = "#e9ec27"
+                            CornerRadius="23"
+                            HorizontalOptions="FillAndExpand"
+                            HeightRequest="46"
+                            Text="Registrar"
+                            TextColor="White">
+                        </Button>
+                    </StackLayout>
+                    
+                    <StackLayout
+                    Orientation="Horizontal"
+                    VerticalOptions="EndAndExpand"
+                    >
 
                         <Image
-                    Source="Facebook_Logo"
-                    WidthRequest="55">
+                            Source="Facebook_Logo"
+                            HorizontalOptions="FillAndExpand"
+                            WidthRequest="55">
                         </Image>
 
                         <Image
-                    Source="Gmail_Logo"
-                    WidthRequest="60">
+                            Source="Gmail_Logo"
+                            HorizontalOptions="FillAndExpand"
+                            WidthRequest="60">
                         </Image>
 
                         <Image
-                    Source="Instagram_Logo"
-                    WidthRequest="60">
+                            Source="Instagram_Logo"
+                            HorizontalOptions="FillAndExpand"
+                            WidthRequest="60">
                         </Image>
 
                     </StackLayout>
