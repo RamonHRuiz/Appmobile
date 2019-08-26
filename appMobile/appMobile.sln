@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMobile.Android", "AppMobile\AppMobile.Android\AppMobile.Android.csproj", "{CD32BCED-2DFD-40F3-87C2-98A7AB96EF53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMobile", "AppMobile\AppMobile\AppMobile.csproj", "{18927A54-3A6A-46C9-93BB-D51CEE686A94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppMobile", "AppMobile\AppMobile\AppMobile.csproj", "{18927A54-3A6A-46C9-93BB-D51CEE686A94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="AppMobile.Vista.LoginPage"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             Title="Rulo"
+             Title="Iniciar sesión"
              >
     <ContentPage.Content>
         <ScrollView 

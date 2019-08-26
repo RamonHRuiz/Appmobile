@@ -1,16 +1,12 @@
 ﻿namespace AppMobile.Modelo
 {
     using GalaSoft.MvvmLight.Command;
-    using System.ComponentModel;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using Vista;
 
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : BaseViewModel
     {
-        #region Eventos
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
         #region Atributos
         private string email;
         private string password;
@@ -22,68 +18,60 @@
         public LoginViewModel()
         {
             this.IsRemember = true;
-            isEnable = true;
+            this.IsEnable = true;
+
+            this.Email = "ruizpachecoramon@gmail.com";
+            this.Password = "1234";
+
         }
         #endregion
 
         #region Propiedades
         public string Email
-        { get
+        {
+            get
             {
-                return this.email;
+                return email;
             }
             set
             {
-                if (this.email != value)
-                {
-                    this.email = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.email)));
-                }
+                SetValue(ref email, value);
             }
         }
 
         public string Password
-        { get
+        {
+            get
             {
-                return this.password;
+                return password;
             }
             set
             {
-                if (this.password != value)
-                {
-                    this.password = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.password)));
-                }
+                SetValue(ref password, value);
             }
         }
 
         public bool IsRunning
-        { get
+        {
+            get
             {
-                return this.isrunning;
+                return isrunning;
             }
             set
             {
-                if (this.isrunning != value)
-                {
-                    this.isrunning = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.isrunning)));
-                }
+                SetValue(ref isrunning, value);
             }
         }
 
         public bool IsEnable
-        { get
+        {
+            get
             {
-                return this.isEnable;
+                return isEnable;
             }
             set
             {
-                if (this.isEnable != value)
-                {
-                    this.isEnable = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.isEnable)));
-                }
+                SetValue(ref isEnable, value);
             }
         }
 
@@ -102,6 +90,7 @@
 
         private async void Login()
         {
+            
             if (string.IsNullOrEmpty(this.Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -111,8 +100,6 @@
                 return;
             }
 
-            this.IsRunning = true;
-            this.IsEnable = false;
 
             if (string.IsNullOrEmpty(this.Password))
             {
@@ -123,6 +110,8 @@
                 return;
             }
 
+            IsRunning = true;
+            IsEnable = false;
             if (Email != "ruizpachecoramon@gmail.com" || Password != "1234")
             {
                 this.IsRunning = false;
@@ -135,13 +124,14 @@
                 return;
             }
 
+
             this.IsRunning = false;
             this.IsEnable = true;
 
-            await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Se a registrado correctamente",
-                    "Accept");
+            this.Email = string.Empty;
+            this.Password = string.Empty;
+            MainViewModel.GetInstance().Services = new ServicesViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new ServicesPage());
         }
 
         public ICommand RegistCommand
