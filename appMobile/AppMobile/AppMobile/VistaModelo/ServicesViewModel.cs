@@ -5,6 +5,9 @@
     using System.Collections.ObjectModel;
     using ServiciosApi;
     using Xamarin.Forms;
+    using System.Windows.Input;
+    using GalaSoft.MvvmLight.Command;
+    using System.Linq;
 
     public class ServicesViewModel : BaseViewModel
     {
@@ -14,6 +17,9 @@
 
         #region Atributos
         private ObservableCollection<Servicios> servicios;
+        private bool isRefreshing;
+        private string filter;
+        private List<Servicios> listaServicio;
         #endregion
 
         #region Propiedades
@@ -21,6 +27,20 @@
         {
             get { return servicios; }
             set { SetValue(ref servicios, value); }
+        }
+
+        public bool IsRefreshing
+        {
+            get { return this.isRefreshing; }
+            set { SetValue(ref this.isRefreshing, value); }
+
+        }
+
+        public string Filter
+        {
+            get { return this.filter; }
+            set { SetValue(ref this.filter, value); }
+
         }
         #endregion
 
@@ -37,26 +57,58 @@
         {
             var conexion = await this.serviciosApi.RevisaConeccion();
 
-            if(!conexion.EsCorrecto)
+            if (!conexion.EsCorrecto)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", conexion.Mensaje, "Accept");
                 await Application.Current.MainPage.Navigation.PopAsync();
                 return;
             }
-            var respuesta = await this.serviciosApi.GetList<Servicios>("", "", "");
+            var respuesta = await this.serviciosApi.GetList<Servicios>("http://restcountries.eu", "/rest", "/v2/all");
+            //var respuesta = await this.serviciosApi.GetList<Servicios>("http://192.168.0.6:8000", "/Documents", "/Trabajos/Servicios");
 
-            if(!respuesta.EsCorrecto)
+            if (!respuesta.EsCorrecto)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", respuesta.Mensaje, "Accept");
                 await Application.Current.MainPage.Navigation.PopAsync();
                 return;
             }
 
-            var listservicios = (List<Servicios>)respuesta.Resultado;
+            listaServicio = (List<Servicios>)respuesta.Resultado;
 
-            this.Servicios = new ObservableCollection<Servicios>(listservicios);
+            this.Servicios = new ObservableCollection<Servicios>(listaServicio);
+        }
+        #region Commandos
+        public ICommand RefrescarComando
+        {
+            get
+            {
+                return new RelayCommand(LoadServices);
+            }
+        }
 
+        public ICommand BuscarCommando
+        {
+            get
+            {
+                return new RelayCommand(Buscar);
+            }
+        }
+
+        private void Buscar()
+        {
+            if (string.IsNullOrEmpty(this.Filter))
+            {
+                this.Servicios = new ObservableCollection<Servicios>(listaServicio);
+            }
+            else
+            {
+                this.Servicios = new ObservableCollection<Servicios>(this.listaServicio.Where(s => s.Name.ToLower().Contains(this.filter.ToLower()) 
+                || s.Capital.ToLower().Contains(this.filter.ToLower())));
+            }
         }
         #endregion
+
     }
+    #endregion
 }
+

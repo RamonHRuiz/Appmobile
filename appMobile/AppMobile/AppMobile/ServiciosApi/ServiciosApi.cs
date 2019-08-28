@@ -54,8 +54,7 @@
                 var url = string.Format("{0}{1}", servicePrefix, controller);
                 var respues = await client.GetAsync(url);
                 var result = await respues.Content.ReadAsStringAsync();
-
-                if(!respues.IsSuccessStatusCode)
+                if (!respues.IsSuccessStatusCode)
                 {
                     return new Respuesta
                     {
