@@ -128,10 +128,14 @@
             this.IsRunning = false;
             this.IsEnable = true;
 
-            this.Email = string.Empty;
-            this.Password = string.Empty;
             MainViewModel.GetInstance().Services = new ServicesViewModel();
             await Application.Current.MainPage.Navigation.PushAsync(new ServicesPage());
+
+            if (password == string.Empty)
+            {
+                this.Email = string.Empty;
+                this.Password = string.Empty;
+            }
         }
 
         public ICommand RegistCommand

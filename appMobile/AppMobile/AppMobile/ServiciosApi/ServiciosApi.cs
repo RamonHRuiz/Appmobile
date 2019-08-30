@@ -51,6 +51,11 @@
                 var client = new HttpClient();
                 //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
                 client.BaseAddress = new Uri(urlBase);
+                //Url de Prueba
+                //var json = await client.GetStringAsync("http://localhost:3000/Servicios");
+                //var result = json;
+                //aqui termina
+
                 var url = string.Format("{0}{1}", servicePrefix, controller);
                 var respues = await client.GetAsync(url);
                 var result = await respues.Content.ReadAsStringAsync();

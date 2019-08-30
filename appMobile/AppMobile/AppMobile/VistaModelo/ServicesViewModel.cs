@@ -8,6 +8,8 @@
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
     using System.Linq;
+    using AppMobile.VistaModelo;
+    using System;
 
     public class ServicesViewModel : BaseViewModel
     {
@@ -16,14 +18,14 @@
         #endregion
 
         #region Atributos
-        private ObservableCollection<Servicios> servicios;
+        private ObservableCollection<ServicieItemViewModel> servicios;
         private bool isRefreshing;
         private string filter;
         private List<Servicios> listaServicio;
         #endregion
 
         #region Propiedades
-        public ObservableCollection<Servicios> Servicios
+        public ObservableCollection<ServicieItemViewModel> Servicios
         {
             get { return servicios; }
             set { SetValue(ref servicios, value); }
@@ -63,7 +65,8 @@
                 await Application.Current.MainPage.Navigation.PopAsync();
                 return;
             }
-            var respuesta = await this.serviciosApi.GetList<Servicios>("http://restcountries.eu", "/rest", "/v2/all");
+            var respuesta = await this.serviciosApi.GetList<Servicios>("http://localhost:3000", "/", "Servicios");
+            //var respuesta = await this.serviciosApi.GetList<Servicios>(" http://localhost:3000/Servicios", "/rest", "/v2/all");
             //var respuesta = await this.serviciosApi.GetList<Servicios>("http://192.168.0.6:8000", "/Documents", "/Trabajos/Servicios");
 
             if (!respuesta.EsCorrecto)
@@ -75,8 +78,22 @@
 
             listaServicio = (List<Servicios>)respuesta.Resultado;
 
-            this.Servicios = new ObservableCollection<Servicios>(listaServicio);
+            this.Servicios = new ObservableCollection<ServicieItemViewModel>(this.ToServiceItemViewModel());
         }
+
+        #region Metodos
+        private IEnumerable<ServicieItemViewModel> ToServiceItemViewModel()
+        {
+            return this.listaServicio.Select(l => new ServicieItemViewModel
+            {
+                ID = l.ID,
+                Name = l.Name,
+                Descripcion = l.Descripcion,
+                Servicio_Padre = l.Servicio_Padre
+
+            });
+        } 
+        #endregion
         #region Commandos
         public ICommand RefrescarComando
         {
@@ -98,12 +115,14 @@
         {
             if (string.IsNullOrEmpty(this.Filter))
             {
-                this.Servicios = new ObservableCollection<Servicios>(listaServicio);
+                this.Servicios = new ObservableCollection<ServicieItemViewModel>(this.ToServiceItemViewModel());
             }
             else
             {
-                this.Servicios = new ObservableCollection<Servicios>(this.listaServicio.Where(s => s.Name.ToLower().Contains(this.filter.ToLower()) 
-                || s.Capital.ToLower().Contains(this.filter.ToLower())));
+                if(filter.Length < 3)
+                    this.Servicios = new ObservableCollection<ServicieItemViewModel>(this.ToServiceItemViewModel().Where(s => s.Name.ToLower().Contains(this.filter.ToLower())));
+                else
+                    this.Servicios = new ObservableCollection<ServicieItemViewModel>(this.ToServiceItemViewModel().Where(s => s.Descripcion.ToLower().Contains(this.filter.ToLower())));
             }
         }
         #endregion

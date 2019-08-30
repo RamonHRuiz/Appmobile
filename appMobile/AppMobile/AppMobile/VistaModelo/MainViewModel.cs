@@ -1,5 +1,7 @@
 ﻿namespace AppMobile.Modelo
 {
+    using AppMobile.VistaModelo;
+
     public class MainViewModel
     {
         #region ViewModels
@@ -8,6 +10,9 @@
 
         public ServicesViewModel Services
         { get; set; }
+
+        public ServiceViewModel service
+        {get; set;}
         #endregion
 
         #region Constructor

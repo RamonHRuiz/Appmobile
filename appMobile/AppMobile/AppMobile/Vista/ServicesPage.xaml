@@ -4,20 +4,21 @@
              x:Class="AppMobile.Vista.ServicesPage"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              Title="Servicios"
+             BackgroundImageSource="IMG_20181115_113747"
              >
-
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding Services}"
-                Padding="5"                >
+                Padding="5" 
+            Opacity="1">
             <SearchBar
-                BackgroundColor="#245cd3"
+                BackgroundColor="Gray"
+                Opacity="60"
                 Text="{Binding Filter,Mode=TwoWay}"
                 Placeholder="Buscando..."
                 SearchCommand="{Binding BuscarCommando}">
             </SearchBar>
             <ListView 
-                BackgroundColor="#245cd3"
                 HasUnevenRows="true" 
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
@@ -32,7 +33,7 @@
                                 HasShadow="true"
                                 Margin="5">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SelectLandCommand}"/>
+                                    <TapGestureRecognizer Command="{Binding SelectServiceCommand}"/>
                                 </Frame.GestureRecognizers>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -49,10 +50,10 @@
                                             Text="{Binding Name}"
                                             TextColor="Black">
                                         </Label>
-                                        <Label 
-                                            Text="{Binding Capital}"
+                                        <!--<Label 
+                                            Text="{Binding Descripcion}"
                                             TextColor="Black">
-                                        </Label>
+                                        </Label>-->
                                     </StackLayout>
                                     <Image 
                                         Grid.Column="2"
