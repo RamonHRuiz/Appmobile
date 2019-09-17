@@ -15,7 +15,8 @@
         public ServiceViewModel(Servicios service)
         {
             this.Service = service;
-        } 
+            Service.Imagen = Service.Name;
+        }
         #endregion
     }
 }

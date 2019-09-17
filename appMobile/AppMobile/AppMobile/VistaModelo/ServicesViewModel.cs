@@ -65,7 +65,9 @@
                 await Application.Current.MainPage.Navigation.PopAsync();
                 return;
             }
-            var respuesta = await this.serviciosApi.GetList<Servicios>("http://localhost:3000", "/", "Servicios");
+            //var respuesta = await this.serviciosApi.GetList<Servicios>("http://localhost:3000", "/", "Servicios"); // debug
+            var respuesta = await this.serviciosApi.GetList<Servicios>("https://h9kpz66lze.execute-api.us-west-2.amazonaws.com", "/Prod/api/", "ServicesRulo"); // prod
+
             //var respuesta = await this.serviciosApi.GetList<Servicios>(" http://localhost:3000/Servicios", "/rest", "/v2/all");
             //var respuesta = await this.serviciosApi.GetList<Servicios>("http://192.168.0.6:8000", "/Documents", "/Trabajos/Servicios");
 
@@ -89,8 +91,8 @@
                 ID = l.ID,
                 Name = l.Name,
                 Descripcion = l.Descripcion,
-                Servicio_Padre = l.Servicio_Padre
-
+                Servicio_Padre = l.Servicio_Padre,
+                Icon= "Icon" +l.Name
             });
         } 
         #endregion

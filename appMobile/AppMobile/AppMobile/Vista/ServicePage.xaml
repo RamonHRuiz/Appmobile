@@ -3,24 +3,58 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
              mc:Ignorable="d"
              x:Class="AppMobile.Vista.ServicePage"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             Title="Servicio">
+             Title="Servicio"
+             BackgroundColor="White">
     <ContentPage.Content>
         <ScrollView
             BindingContext="{Binding Service}">
             <StackLayout
                 Padding="5">
+                <Image
+                    WidthRequest="500"
+                    HorizontalOptions="CenterAndExpand"
+                    Source="{Binding Service.Imagen}">
+                </Image>
                 <Label
-                    FontSize="Large"
                     FontAttributes="Bold"
-                    HorizontalOptions="Center"
-                    Text="Texto de Servicio">
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding Service.Name}">
                 </Label>
                 <Label
-                    Text="{Binding Name}">
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HorizontalOptions="EndAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Service.Descripcion}"
+                    >
                 </Label>
+                <!--<schedule:SfSchedule.MonthCellStyle>
+                    <schedule:MonthViewCellStyle
+                        BackgroundColor="#8282ff"
+                        TextColor="Orange"
+                        FontSize="20"
+                        FontFamily = "Arial"
+                        FontAttributes = "None"
+                        NextMonthBackgroundColor="Gray"
+                        NextMonthTextColor="Gray"
+                        PreviousMonthBackgroundColor="White"
+                        PreviousMonthTextColor="Gray"
+                        TodayBackgroundColor="#f97272"
+                        TodayTextColor="White">
+                    </schedule:MonthViewCellStyle>
+                </schedule:SfSchedule.MonthCellStyle>-->
+                
+                <DatePicker
+                    HorizontalOptions="CenterAndExpand"
+                    FontAttributes="Bold"
+                    FontSize="Large">
+                </DatePicker>
             </StackLayout>
 
         </ScrollView>

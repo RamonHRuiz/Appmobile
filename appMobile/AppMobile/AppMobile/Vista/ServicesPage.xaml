@@ -5,6 +5,7 @@
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              Title="Servicios"
              BackgroundImageSource="IMG_20181115_113747"
+             IconImageSource="LogoRulo"
              >
     <ContentPage.Content>
         <StackLayout
@@ -14,7 +15,7 @@
             <SearchBar
                 BackgroundColor="Gray"
                 Opacity="60"
-                Text="{Binding Filter,Mode=TwoWay}"
+                Text="{Binding Filter,Mode=Default}"
                 Placeholder="Buscando..."
                 SearchCommand="{Binding BuscarCommando}">
             </SearchBar>
@@ -42,13 +43,19 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <StackLayout 
-                                        Grid.Column="1"
-                                        VerticalOptions="Center">
+                                        Orientation="Horizontal"
+                                        Grid.Column="1">
+                                        <Image
+                                            HorizontalOptions="StartAndExpand"
+                                            WidthRequest="50"
+                                            Source="{Binding Icon}">
+                                        </Image>
                                         <Label 
+                                            TextColor="#020e63"
                                             FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="{Binding Name}"
-                                            TextColor="Black">
+                                            FontSize="Large" 
+                                            VerticalOptions="Center"
+                                            Text="{Binding Name}">
                                         </Label>
                                         <!--<Label 
                                             Text="{Binding Descripcion}"

@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
     using Newtonsoft.Json;
+    using Xamarin.Forms;
+    [JsonObject("ServicesRulo")]
     public class Servicios
     {
         [JsonProperty(PropertyName = "ID")]
@@ -15,6 +17,10 @@
 
         [JsonProperty(PropertyName = "Servicio")]
         public int Servicio_Padre { get; set; }
+
+        public string Imagen { get; set; }
+
+        public string Icon { get; set; }
 
         #region Lands
         //[JsonProperty(PropertyName = "name")]
@@ -78,7 +84,7 @@
         //public string Cioc { get; set; }
         #endregion
     }
-
+    [System.Serializable]
     public class RootObject
     {
         public List<Servicios> Servicios { get; set; }

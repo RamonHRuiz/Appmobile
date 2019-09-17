@@ -21,7 +21,7 @@
 
         private async void SelectService()
         {
-            MainViewModel.GetInstance().service = new ServiceViewModel(this);
+            MainViewModel.GetInstance().Service = new ServiceViewModel(this);
             await Application.Current.MainPage.Navigation.PushAsync(new ServicePage());
         }
     }

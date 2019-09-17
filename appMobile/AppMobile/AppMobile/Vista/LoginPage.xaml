@@ -27,16 +27,17 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Label
+                    <Label
+                    TextColor="Black"
                     FontAttributes="Bold"
                     FontSize="Large"
                     Grid.Row="0"
                     Grid.Column="0"
                     VerticalOptions="Center"
                     Text="Correo">
-                    
-                </Label>
+                    </Label>
                 <Entry
+                    TextColor="#020e63"
                     Grid.Row="0"
                     Grid.Column="1"
                     Keyboard="Email" 
@@ -46,6 +47,7 @@
                 </Entry>
 
                 <Label 
+                    TextColor="Black"
                     FontAttributes="Bold"
                     FontSize="Large"
                     Grid.Row="1"
@@ -54,6 +56,7 @@
                     Text="Constraseña">
                 </Label>
                 <Entry
+                    TextColor="#020e63"
                     Grid.Row="1"
                     Grid.Column="1"
                     IsPassword="True"
@@ -72,6 +75,7 @@
                              Orientation="Horizontal"
                              VerticalOptions="CenterAndExpand">
                     <Label
+                    TextColor="Black"
                     FontAttributes="Bold"
                     FontSize="Large"
                     Text="Recordarme"
@@ -79,6 +83,7 @@
                     HorizontalOptions="StartAndExpand">
                     </Label>
                     <Switch
+                        OnColor="#020e63"
                         IsToggled="{Binding IsRemember,Mode=TwoWay}"
                         HorizontalOptions="End">
                     </Switch>
@@ -101,7 +106,7 @@
                         <Button
                             Command="{Binding LoginCommand}"
                             Margin="10,10"
-                            BackgroundColor = "#39e8f0"
+                            BackgroundColor = "#020e63"
                             CornerRadius="23"
                             HorizontalOptions="FillAndExpand"
                             HeightRequest="46"
@@ -112,7 +117,7 @@
                         <Button 
                             Command="{Binding RegistCommand}"
                             Margin="10,10"
-                            BackgroundColor = "#e9ec27"
+                            BackgroundColor = "#f11b05"
                             CornerRadius="23"
                             HorizontalOptions="FillAndExpand"
                             HeightRequest="46"

@@ -67,7 +67,8 @@
                         Mensaje = result,
                     };
                 }
-
+                result = result.Replace("{\"servicios\":", "");
+                result = result.TrimEnd('}');
                 var list = JsonConvert.DeserializeObject<List<T>>(result);
                 return new Respuesta
                 {

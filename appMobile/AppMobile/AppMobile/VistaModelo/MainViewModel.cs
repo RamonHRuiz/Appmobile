@@ -1,6 +1,8 @@
 ﻿namespace AppMobile.Modelo
 {
+    using System;
     using AppMobile.VistaModelo;
+    using Xamarin.Forms;
 
     public class MainViewModel
     {
@@ -11,8 +13,9 @@
         public ServicesViewModel Services
         { get; set; }
 
-        public ServiceViewModel service
+        public ServiceViewModel Service
         {get; set;}
+
         #endregion
 
         #region Constructor
